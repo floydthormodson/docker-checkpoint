@@ -30,7 +30,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Test THE VOLUmes 2</p>
         <p>
           {greetData[0]?.greeting}
         </p>
