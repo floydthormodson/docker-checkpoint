@@ -5,9 +5,11 @@ services:
   server: 
     build: server/
     volumes: 
-    - "./server:/app"
+    - ./server:/src/app
     ports: 
       - "8080:8080"
+    networks:
+      - app-network 
     environment:
       DB_CONNECTION_STRING: postgres://postgres:docker@db:5432/greetings
     depends_on:
@@ -16,9 +18,11 @@ services:
   frontend:
     build: frontend/docker-front/
     volumes:
-    - "./client:/app"
+    - ./frontend/docker-front:/src/app
     ports: 
       - "3000:3000"
+    networks:
+      - app-network
     depends_on:
       - server
 
@@ -33,6 +37,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: greetings
-
     volumes:
       - ./server/database:/var/lib/postgresql/data
+    networks:
+      - app-network
+  
+networks:
+  app-network:
+    driver: bridge

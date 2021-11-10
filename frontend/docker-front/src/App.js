@@ -20,6 +20,7 @@ function App() {
       .then(items => {
         if(mounted) {
           setGreetData(items);
+          console.log(items);
         }
       })
     return () => mounted = false;
@@ -29,8 +30,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p>Test THE VOLUmes 2</p>
         <p>
-          {greetData.greeting}
+          {greetData[0]?.greeting}
         </p>
       </header>
     </div>
